@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 class ApiService {
   // For Android Emulator - use 10.0.2.2 to access host machine's localhost
   // This is the special IP that Android emulator uses to access host machine
-  static const String baseUrl = 'http://10.0.2.2:8000';
+  static const String baseUrl = 'https://linear-regression-3b4h.onrender.com';
   
   // Health check endpoint
   static Future<Map<String, dynamic>?> healthCheck() async {

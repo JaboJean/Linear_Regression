@@ -1,56 +1,162 @@
-Prediction App Setup Guide
-This guide will help you set up and run both the backend (FastAPI) and frontend (Flutter) for the Prediction App.
+Temperature Prediction Mobile App
+A Flutter mobile application that predicts global temperature changes using machine learning models (Linear Regression, Random Forest, and Decision Trees). The app connects to a FastAPI backend for real-time temperature predictions based on historical climate data as my mission aligns with climate change.
 
-Prerequisites
-Before you begin, make sure you have the following installed on your machine:
+API Endpoint: https://linear-regression-api.onrender.com
+📹 Video Demonstration: https://youtu.be/H0bxHxqaKGo
 
-Python 3.x
-pip (Python package manager)
-Flutter SDK
-Android Studio or any preferred IDE for Flutter development (e.g., Visual Studio Code)
-A running local network for API communication between the app and the backend.
-1. Clone the repository
-Clone the repository to your local machine: git clone [https://github.com/JaboJean/Linear_Regression.git](url)
+Mobile App Features:
+Real-time temperature prediction
+Multiple ML model comparison
+Interactive results with interpretation
+Clean, intuitive user interface
+ Prerequisites
+1. Install Flutter SDK
+Download Flutter from: https://docs.flutter.dev/get-started/install
+Add Flutter to your system PATH
+Verify installation: flutter doctor
+2. Install Android Studio
+Download from: https://developer.android.com/studio
+Install Android SDK and create a virtual device (AVD)
+3. Install Git
+Download from: https://git-scm.com/downloads
+ Setup Instructions
+Clone the Repository
+git clone https://github.com/JaboJean/Linear_Regression.git
+cd Linear_Regression
 
-2. Set up a Python virtual environment
-Create a virtual environment to isolate your project dependencies: python -m venv venv
+Flutter App Setup
+Navigate to Flutter App Directory
+cd summative/Flutter/temp_predict
 
-Activate the virtual environment:
-Windows:
-venv\Scripts\activate
+Install Dependencies
+flutter pub get
 
-Mac/Linux:
-source venv/bin/activate
+Backend API Setup
+Option 1: Use Live API (Recommended)
+The app is configured to use our live API at: https://linear-regression-api.onrender.com
+No additional setup required - just run the Flutter app!
+Option 2: Run API Locally
+Navigate to API Directory:
+cd ../../API
 
-3. Install backend dependencies
-Install the required dependencies for the FastAPI backend: pip install -r requirements.txt
+Install Python Dependencies:
+pip install -r requirements.txt
 
-4. Set up the Model Path
-Ensure the model file model.pkl is available at the correct path. Update the model_path variable in the api.py file if needed: model_path = "C:/Users/kabat/Downloads/model.pkl" # Path to your model
+Verify Model File:
+ls "Random Forest.pkl"
 
-5. Run the FastAPI server
-Start the FastAPI server by running the following command: uvicorn api:app --reload --host 192.168.1.82 --port 8000 Note: Make sure 192.168.1.82 is the correct IP address of the machine running the API (this should be accessible from your Flutter app).
+Start the API Server:
+uvicorn main:app --reload --host 0.0.0.0 --port 8000
 
-You should now have the API server running at http://192.168.1.82:8000.
+Note: Keep this terminal window open - the API server must be running for the app to work.
+ Running the Mobile App
+Step 1: Start Android Emulator
+Open Android Studio
+Go to Tools > AVD Manager
+Start an existing virtual device OR create a new one
+Step 2: Navigate to Flutter Directory
+cd summative/Flutter/temp_predict
 
-6. Test the API connection (optional)
-You can test the API by navigating to http://192.168.1.82:8000/docs in your browser. This should display the FastAPI Swagger UI where you can test the /predict endpoint.
+Step 3: Check Flutter Setup
+flutter doctor
 
-7. Install Flutter
-Follow the official installation guide for Flutter: Flutter Installation.
+Fix any issues shown in red.
+Step 4: Run the App
+flutter run
 
-8. Clone the repository
-If you haven't already, clone the repository for the Flutter frontend: git clone https://github.com/NickMuhigi/Linear-Regression-Model-Deployment-Using-Flutter.git cd Linear-Regression-Model-Deployment-Using-Flutter
+Using the App
+1. Launch Screen
+The app opens with a temperature prediction interface
+2. Make a Prediction
+Enter a year (e.g., 2014)
+Tap "Predict Temperature"
+Wait for the result
+3. View Results
+Prediction Result: Shows predicted temperature change
+Prediction Details: Displays input parameters and model info
+Interpretation: Provides context about the prediction
+4. Additional Actions
+Try Again: Make another prediction with different input
+New Prediction: Clear current results and start fresh
+🔧 Troubleshooting
+Common Issues:
+1. "Model file not found" Error (Local API only)
+# Verify model file location
+ls "../../API/Random Forest.pkl"
 
-9. Install Flutter dependencies
-Install the required dependencies for the Flutter app: flutter pub get
 
+# If missing, copy from the correct location
+cp "../Linear_regression_model/Random Forest.pkl" "../../API/"
 
-11. Run the Flutter app
-Run the Flutter app on an emulator or connected device: flutter run
+2. API Connection Error
+Live API: Check your internet connection
+Local API: Ensure API server is running on http://localhost:8000
+Check if port 8000 is available
+Verify your computer's firewall settings
+3. Flutter Build Errors
+# Clean and rebuild
+flutter clean
+flutter pub get
+flutter run
 
-Video Demo
-[https://www.youtube.com/watch?v=P3Xaf-dMRxY](https://youtu.be/H0bxHxqaKGo)
+4. Android Emulator Issues
+Restart the emulator
+Try a different virtual device
+Check Android SDK installation
+5. Network Connection Issues
+For live API: Ensure stable internet connection
+For local API: Ensure both API server and Flutter app are on the same network
+For physical device testing, use your computer's IP address instead of localhost
+💻 Development Commands
+Hot Reload (while app is running):
+Press r in the terminal to hot reload
+Press R for hot restart
+Press q to quit
+Build for Release:
+flutter build apk --release
 
-Deployed API
-https://linear-regression-3b4h.onrender.com/docs
+🖥️ System Requirements
+Operating System: Windows 10+, macOS 10.14+, or Linux
+RAM: Minimum 8GB (16GB recommended)
+Storage: 10GB free space
+Internet: Required for initial setup and dependencies
+🏗️ Project Structure
+Linear_Regression/
+├── summative/
+│   ├── Flutter/
+│   │   └── temp_predict/          # Flutter mobile app
+│   ├── API/                       # FastAPI backend
+│   │   ├── main.py
+│   │   ├── Random Forest.pkl      # ML model file
+│   │   └── requirements.txt
+│   └── Linear_regression_model/   # Model training files
+
+🤖 Machine Learning Models
+The app uses three different models for temperature prediction:
+Linear Regression with SGD: Simple baseline model
+Random Forest: Ensemble method (currently deployed)
+Decision Tree: Interpretable single-tree model
+Model performance is compared using Mean Squared Error (MSE) metrics.
+🚀 Deployment
+API Deployment (Render)
+The FastAPI backend is deployed on Render at: https://linear-regression-api.onrender.com
+Mobile App Deployment
+Build APK: flutter build apk --release
+APK location: build/app/outputs/flutter-apk/app-release.apk
+🤝 Contributing
+Fork the repository
+Create a feature branch
+Make your changes
+Submit a pull request
+📄 License
+This project is licensed under the MIT License.
+📞 Support
+If you encounter issues:
+Check the terminal output for error messages
+Ensure all prerequisites are installed
+Verify API connectivity (live or local)
+Check Flutter doctor output
+Review the troubleshooting section above
+For additional support, please open an issue on GitHub.
+
+Built with: Flutter, FastAPI, Scikit-learn, Python, Dart

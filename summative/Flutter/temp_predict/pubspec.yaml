@@ -1,0 +1,43 @@
+name: temperature_prediction_app
+description: A Flutter app for predicting temperature changes using machine learning
+
+# Prevent publishing to pub.dev
+publish_to: 'none'
+
+# App version and build number
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: ">=3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # HTTP client for API calls
+  http: ^1.1.2
+  
+  # Material design icons
+  cupertino_icons: ^1.0.6
+  
+  # For handling JSON serialization
+  json_annotation: ^4.8.1
+  
+  # For better state management (optional but recommended)
+  provider: ^6.1.1
+  
+  # For loading indicators and animations
+  flutter_spinkit: ^5.2.0
+  
+  # For charts and data visualization (optional)
+  fl_chart: ^0.66.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  # Linting rules for better code quality
+  flutter_lints: ^3.0.1
+  
+  # For JSON serialization code gene

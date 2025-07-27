@@ -1,16 +1,56 @@
-# linear_regression
+Prediction App Setup Guide
+This guide will help you set up and run both the backend (FastAPI) and frontend (Flutter) for the Prediction App.
 
-A new Flutter project.
+Prerequisites
+Before you begin, make sure you have the following installed on your machine:
 
-## Getting Started
+Python 3.x
+pip (Python package manager)
+Flutter SDK
+Android Studio or any preferred IDE for Flutter development (e.g., Visual Studio Code)
+A running local network for API communication between the app and the backend.
+1. Clone the repository
+Clone the repository to your local machine: git clone [https://github.com/JaboJean/Linear_Regression.git](url)
 
-This project is a starting point for a Flutter application.
+2. Set up a Python virtual environment
+Create a virtual environment to isolate your project dependencies: python -m venv venv
 
-A few resources to get you started if this is your first Flutter project:
+Activate the virtual environment:
+Windows:
+venv\Scripts\activate
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Mac/Linux:
+source venv/bin/activate
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+3. Install backend dependencies
+Install the required dependencies for the FastAPI backend: pip install -r requirements.txt
+
+4. Set up the Model Path
+Ensure the model file model.pkl is available at the correct path. Update the model_path variable in the api.py file if needed: model_path = "C:/Users/kabat/Downloads/model.pkl" # Path to your model
+
+5. Run the FastAPI server
+Start the FastAPI server by running the following command: uvicorn api:app --reload --host 192.168.1.82 --port 8000 Note: Make sure 192.168.1.82 is the correct IP address of the machine running the API (this should be accessible from your Flutter app).
+
+You should now have the API server running at http://192.168.1.82:8000.
+
+6. Test the API connection (optional)
+You can test the API by navigating to http://192.168.1.82:8000/docs in your browser. This should display the FastAPI Swagger UI where you can test the /predict endpoint.
+
+7. Install Flutter
+Follow the official installation guide for Flutter: Flutter Installation.
+
+8. Clone the repository
+If you haven't already, clone the repository for the Flutter frontend: git clone https://github.com/NickMuhigi/Linear-Regression-Model-Deployment-Using-Flutter.git cd Linear-Regression-Model-Deployment-Using-Flutter
+
+9. Install Flutter dependencies
+Install the required dependencies for the Flutter app: flutter pub get
+
+
+11. Run the Flutter app
+Run the Flutter app on an emulator or connected device: flutter run
+
+Video Demo
+[https://www.youtube.com/watch?v=P3Xaf-dMRxY](https://youtu.be/H0bxHxqaKGo)
+
+Deployed API
+https://linear-regression-3b4h.onrender.com/docs
